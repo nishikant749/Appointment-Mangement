@@ -1,0 +1,9 @@
+* clone the project from repo
+* run composer update
+* run php artisan key:generate
+* Setup the .env file
+* run php artisan migrate to migrate the database
+* run php artisan db:seed to seed Admin, Permission Seeder, Role Seeder, Appointment Slot Seeders
+* run php artisan serve to start server
+* Admin Credentials (email-admin2022@gmail.com, password-Admin@2022) or you can see in AdminSeeder also
+
