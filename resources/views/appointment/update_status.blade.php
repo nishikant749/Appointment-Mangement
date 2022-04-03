@@ -12,7 +12,7 @@
                         <div class="dropdown">
                           <select  id="status" class="form-control required doctor" name="status" required>
                               <option value="completed">Completed</option>
-                              <option value="completed">Cancelled</option>
+                              <option value="cancelled">Cancelled</option>
                           </select>
                         </div>
                       </div>

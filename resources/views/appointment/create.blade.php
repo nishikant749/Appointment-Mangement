@@ -44,13 +44,13 @@
                     <div class="col-md-12">
                        <div class="mb-3">
                         <label for="email" class="form-label required">Email address</label>
-                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter your email..." required {{ $user != '' ? "readonly" : '' }} value="{{ $user != '' ? $user->email : ''}}">
+                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter your email..." required {{ ($user != '' AND $user->user_type != 'admin') ? "readonly" : '' }} value="{{ ($user != '' AND $user->user_type != 'admin') ? $user->email : ''}}">
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="mb-3">
-                        <label for="name" class="form-label required">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name..." required {{ $user != '' ? "readonly" : '' }} value="{{ $user != '' ? $user->name : ''}}">
+                        <label for="name" class="form-label required">Patient Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name..." required {{ ($user != '' AND $user->user_type != 'admin') ? "readonly" : '' }} value="{{ ($user != '' AND $user->user_type != 'admin') ? $user->name : ''}}">
                       </div>
                     </div>
                     <div class="col-md-12">

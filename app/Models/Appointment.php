@@ -84,5 +84,26 @@ class Appointment extends Model
     {
         return $this->slot->start_time.'-'.$this->slot->end_time;
     }
+
+    /**
+     * @method to set the Attribute to fetch appointment Color according to status
+     * @return string
+     * @param
+     */
+    public function getStatusColorAttribute()
+    {
+        #Set Color class
+        $colorClass = '';
+        if($this->status == 'booked') {
+            $colorClass = "table-info";
+        } elseif ($this->status == 'completed') {
+           $colorClass = "table-success";
+        } else {
+            $colorClass = "table-danger";
+        }
+
+        #retunr
+        return $colorClass;
+    }
     
 }

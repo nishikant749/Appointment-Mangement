@@ -48,7 +48,7 @@
           </thead>
           <tbody>
             @foreach($appointments as $appointment)
-              <tr>
+              <tr class="{{ $appointment->status_color }}">
                 <th scope="row">{{ $appointment->patient_name ?? '' }}</th>
                 <th scope="row">{{ $appointment->email ?? '' }}</th>
                 <td>{{ $appointment->doctor->name ?? '' }}</td>
