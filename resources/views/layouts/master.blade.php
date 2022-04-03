@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{asset('assets/css/bootstrap-datepicker.min.css')}}">
   <link rel="stylesheet" href="{{asset('assets/css/bootstrap-datetimepicker.min.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/css/jquery.dataTables.min.css')}}">
   <style type="text/css">
     .error {
       color: red;
@@ -82,6 +83,7 @@
   <script src="{{asset('assets/js/bootstrap-datepicker.js')}}"></script>  
   <script src="{{asset('assets/js/moment.min.js')}}"></script>  
   <script src="{{asset('assets/js/bootstrap-datepicker.min.js')}}"></script>  
+  <script src="{{asset('assets/js/jquery.dataTables.min.js')}}"></script>  
   <script type="text/javascript">
     $(document).ready(function() {
       $.ajaxSetup({

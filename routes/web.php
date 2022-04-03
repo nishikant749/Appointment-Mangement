@@ -47,7 +47,9 @@ Route::group(['middleware' => ['auth']], function() {
 
     #Patient Routes
     Route::resource('patient', PatientController::class);
+    Route::post('updatePatient', [PatientController::class, 'updatePatient'])->name('updatePatient');
 
     #Doctor Routes
     Route::resource('doctor', DoctorController::class);
+    Route::post('updateDoctor', [DoctorController::class, 'updateDoctor'])->name('updateDoctor');
 });

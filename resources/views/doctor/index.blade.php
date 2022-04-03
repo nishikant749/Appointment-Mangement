@@ -32,20 +32,28 @@
     <div>
       <div class="container">
         <h4>Doctors</h4>
-        <table class="table">
+        <table class="table" id="myTable">
           <thead>
             <tr>
               <th scope="col">Name</th>
               <th scope="col">Email</th>
               <th scope="col">Mobile</th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
             @foreach($doctors as $doctor)
               <tr>
-                <th scope="row">{{ $doctor->name ?? '' }}</th>
-                <th scope="row">{{ $doctor->email ?? '' }}</th>
+                <td>{{ $doctor->name ?? '' }}</th>
+                <td>{{ $doctor->email ?? '' }}</th>
                 <td>{{ $doctor->mobile ?? '' }}</td>
+                @can('doctor.edit')
+                  <td>
+                    <a href="#" class="btn btn-sm btn-gradient-primary mb-3" data-id="{{ $doctor->id }}" id="update_doctor">Edit</a>
+                    <label class="togglebox toggleStatus ml-1" data-id="{{ $doctor->id ?? ''}}">
+                    </label>
+                  </td>
+                @endcan
               </tr>
             @endforeach
           </tbody>
@@ -55,23 +63,27 @@
     @endcan
   </div>
 </div>
-<div class="modal fade updateAppointmentStatus" id="updateAppointmentStatus" data-backdrop="static" data-keyboard="false" tabindex="-1" role="updateSplashImage" aria-labelledby="gridSystemModalLabel">
+<div class="modal fade updateDoctor" id="updateDoctor" data-backdrop="static" data-keyboard="false" tabindex="-1" role="updateSplashImage" aria-labelledby="gridSystemModalLabel">
 </div>
 @endsection
 @section('script')
   <script type="text/javascript">
+    $(document).ready( function () {
+        $('#myTable').DataTable();
+    } );
+    
     //On Edit of Discount
-    $('a#update_status').on('click', function(e) {
-     var appointmentId = $(this).attr('data-id');
+    $('a#update_doctor').on('click', function(e) {
+     var doctorId = $(this).attr('data-id');
      $.ajax({
-        url: "{{route('updateStatus')}}",
+        url: "{{route('updateDoctor')}}",
         method: "POST",
         dataType: "json",
-        data:{'id':appointmentId},
+        data:{'id':doctorId},
         success: function(response) {
           if (response.status == 200) {
-            $('#updateAppointmentStatus').html(response.html);
-            $('.updateAppointmentStatus').modal('show');
+            $('#updateDoctor').html(response.html);
+            $('.updateDoctor').modal('show');
           } 
         }
       }); 

@@ -95,9 +95,41 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Appointment $appointment)
+    public function updateDoctor(Request $request)
     {
-        
+        #Fetch Apoointment
+        $doctor = $this->user->doctor()->find($request->id);
+
+        # return to Modal View
+        $html = view($this->baseView.'update')->with(['doctor' => $doctor])->render();
+
+         # return json
+        return response()->json(['status' => 200, 'html' => $html]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, User $doctor)
+    {
+        #Set Data
+        $data = [
+            'name'          => $request->name,
+            'email'         => $request->email,
+            'mobile'        => $request->mobile,
+            'qualification' => $request->qualification,
+            'specialization'=> $request->specialization,
+        ];
+
+        #Update
+        $doctor->update($data);
+
+        #return to 
+        return back()->with('message', 'Doctor updated Successfully.');
     }
 
     /**

@@ -32,7 +32,7 @@
     <div>
       <div class="container">
         <h4>Appointments</h4>
-        <table class="table">
+        <table class="table" id="myTable">
           <thead>
             <tr>
               <th scope="col">Patient Name</th>
@@ -76,6 +76,10 @@
 @endsection
 @section('script')
   <script type="text/javascript">
+    $(document).ready( function () {
+        $('#myTable').DataTable();
+    } );
+
     //On Edit of Discount
     $('a#update_status').on('click', function(e) {
      var appointmentId = $(this).attr('data-id');

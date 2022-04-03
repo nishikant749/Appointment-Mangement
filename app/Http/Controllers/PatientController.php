@@ -95,13 +95,39 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Appointment $appointment)
+    public function updatePatient(Request $request)
     {
-        #Update appointment status
-        $appointment->update(['status' => $request->status]);
+        #Fetch Apoointment
+        $patient = $this->user->patient()->find($request->id);
 
-        #return redirect
-        return redirect()->back()->with(['message' => 'Status updated successfully']);
+        # return to Modal View
+        $html = view($this->baseView.'update')->with(['patient' => $patient])->render();
+
+         # return json
+        return response()->json(['status' => 200, 'html' => $html]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, User $patient)
+    {
+        #Set Data
+        $data = [
+            'name'          => $request->name,
+            'email'         => $request->email,
+            'mobile'        => $request->mobile,
+        ];
+
+        #Update
+        $patient->update($data);
+
+        #return to 
+        return back()->with('message', 'Patient updated Successfully.');
     }
 
     /**
